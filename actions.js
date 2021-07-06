@@ -1,23 +1,16 @@
 import * as types from './types'
+import { requests } from './lib/api'
 
-// INITIALIZES CLOCK ON SERVER
-export const serverRenderClock = () => (dispatch) =>
-  dispatch({
-    type: types.TICK,
-    payload: { light: false, ts: Date.now() },
-  })
+export const setValueFormThunk = (value, field) => async (dispatch) => {
+  const typeIs = types.SET_FORM_DATA[field]
+  await dispatch({ type: typeIs, payload: { value: value, field: field } })
+}
 
-// INITIALIZES CLOCK ON CLIENT
-export const startClock = () => (dispatch) =>
-  setInterval(() => {
-    dispatch({ type: types.TICK, payload: { light: true, ts: Date.now() } })
-  }, 1000)
+export const clearFormThunk = () => async (dispatch) => {
+  await dispatch({ type: types.RESET })
+}
 
-// INCREMENT COUNTER BY 1
-export const incrementCount = () => ({ type: types.INCREMENT })
-
-// DECREMENT COUNTER BY 1
-export const decrementCount = () => ({ type: types.DECREMENT })
-
-// RESET COUNTER
-export const resetCount = () => ({ type: types.RESET })
+export const setUserDataThunk = (arr) => async (dispatch) => {
+  let userData = { data: arr }
+  const response = await requests.sendUserData(userData)
+}

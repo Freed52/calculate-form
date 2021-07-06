@@ -1,0 +1,13 @@
+.layout {
+    margin: 0 25%;
+    padding: 3em;
+    color: #393B44;
+}
+
+.layout > h1{
+    font-size: calc(4vh + 2 * ((100vh - 769px) / 2880));
+}
+
+.layout > p, .layout > span, .layout > ul > li {
+    font-size: calc(2vh + 2 * ((100vh - 769px) / 2880));
+}
